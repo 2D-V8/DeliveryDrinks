@@ -7,7 +7,7 @@ const LogoSection = () => {
     <View style={styles.logoContainer}>
       <Image
         style={styles.logoImg}
-        source={require('../../assets/logo.png')}
+        source={require('../../../assets/logo.png')}
       />
       <Text style={styles.logoText}>Drinks Now</Text>
     </View>
