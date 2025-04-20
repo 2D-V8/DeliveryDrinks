@@ -40,7 +40,6 @@ export const HomeScreen = () => {
             onPress={() => {
               console.log('Email: ' + email);
               console.log('Password: ' + password);
-              ToastAndroid.show('¡Intentando iniciar sesión!', ToastAndroid.SHORT);
             }}
             color="purple"
           />

@@ -7,7 +7,7 @@ import useViewModel from './ViewModel';
 
 export const RegisterScreen = () => {
 
-  const { name, birthdate, document, email, password, ConfirmPassword, onChange } = useViewModel();
+  const { name, birthdate, document, email, password, ConfirmPassword, onChange, register } = useViewModel();
 
 
   const [fecha, setFecha] = useState<Date | undefined>();
@@ -62,8 +62,8 @@ export const RegisterScreen = () => {
         placeholder="Ingresa tu documento"
         keyboardType="numeric"
         onChangeText={(text) => {
-       const soloNumeros = text.replace(/[^0-9]/g, ''); // Asegura que solo se ingresen números
-       onChange('document', soloNumeros);  // Actualiza el valor del documento en el ViewModel
+        const soloNumeros = text.replace(/[^0-9]/g, ''); // Asegura que solo se ingresen números
+        onChange('document', soloNumeros);  // Actualiza el valor del documento en el ViewModel
      }}
         value={document}  // Enlaza el valor del documento con el ViewModel
       />
@@ -87,8 +87,9 @@ export const RegisterScreen = () => {
         value={ConfirmPassword} 
         onChangeText= { text  => onChange('ConfirmPassword', text) }/>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Continuar</Text>
+        <TouchableOpacity style={styles.button} onPress={() => register()}>
+          <Text style={styles.buttonText} 
+          >Continuar</Text>
         </TouchableOpacity>
       </View>
       <AppLogo />
