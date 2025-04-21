@@ -1,0 +1,14 @@
+USE drinks_delivery;
+
+CREATE TABLE users(
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+email VARCHAR(180) NOT NULL UNIQUE,
+name VARCHAR(90) NOT NULL,
+password VARCHAR(90) NOT NULL,
+created_at TIMESTAMP(0) NOT NULL,
+updated_at TIMESTAMP(0) NOT NULL,
+fecha_nacimiento DATE NOT NULL,
+documento_identidad BIGINT NOT NULL UNIQUE
+
+
+);
