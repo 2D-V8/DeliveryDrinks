@@ -38,23 +38,32 @@ export const RegisterScreen = () => {
     <Text style={styles.label}>Fecha de nacimiento</Text>
     <TouchableOpacity style={styles.input} onPress={abrirCalendario}>
       <Text style={styles.inputText}>
-        {birthdate ? birthdate : 'DD/MM/AAAA'}
+        {birthdate 
+          ? `${birthdate.substring(8, 10)}-${birthdate.substring(5, 7)}-${birthdate.substring(0, 4)}`
+          : 'DD-MM-YYYY'}
       </Text>
     </TouchableOpacity>
+
     {mostrarCalendario && (
       <DateTimePicker
         value={new Date()} // Lo puedes cambiar a la fecha que desees como valor inicial
         mode="date"
         display="default"
         onChange={(_, selectedDate) => {
-          const selectedDateStr = selectedDate ? selectedDate.toLocaleDateString() : '';
-          onChange('birthdate', selectedDateStr); // Esto actualiza el valor en el ViewModel
-          setFecha(selectedDate || new Date()); // Actualiza la variable local de la fecha
-          setMostrarCalendario(false); // Cierra el calendario
+          if (selectedDate) {
+            const yyyy = selectedDate.getFullYear();
+            const mm = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(selectedDate.getDate()).padStart(2, '0');
+            const formattedDate = `${yyyy}-${mm}-${dd}`; // Formato enviado YYYY-MM-DD
+            onChange('birthdate', formattedDate); // YYYY-MM-DD
+            setFecha(selectedDate);
+          }
+          setMostrarCalendario(false);
         }}
         maximumDate={new Date()} // Limitar la fecha a hoy
       />
     )}
+
         <Text style={styles.label}>Documento de identidad</Text>
         <Text style={styles.subLabel}>Por razones legales necesitamos validar tu identidad.</Text>
         <TextInput
